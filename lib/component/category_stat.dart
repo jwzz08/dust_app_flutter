@@ -32,6 +32,10 @@ class CategoryStat extends StatelessWidget {
                         child: Text(
                           '종류별 통계',
                           textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white
+                          ),
                         ),
                       )),
                   Expanded(
