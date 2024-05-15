@@ -22,12 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
     // TODO: implement initState
     super.initState();
 
-    StatRepository.fetchData(itemCode: ItemCode.PM10);
+    StatRepository.fetchData();
     getCount();
   }
 
   getCount() async {
-    print(await GetIt.I<Isar>().statModels.count());
+    print(await GetIt
+        .I<Isar>()
+        .statModels
+        .count());
   }
 
   @override
@@ -35,18 +38,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: primaryColor,
       body: SingleChildScrollView(
-        child: FutureBuilder<List<StatModel>>(
-            future: StatRepository.fetchData(itemCode: ItemCode.PM10),
-            builder: (context, snapshot) {
-              print(snapshot.data);
-              return Column(
-                children: [
-                  MainStat(),
-                  CategoryStat(),
-                  HoulyStat(),
-                ],
-              );
-            }),
+          child: Column(
+            children: [
+              MainStat(),
+              CategoryStat(),
+              HoulyStat(),
+            ],
+          )
       ),
     );
   }
