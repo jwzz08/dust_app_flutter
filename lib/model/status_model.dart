@@ -1,24 +1,4 @@
-# dusty_dust
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-# 수치상태 데이터
-
-```dart
- /*
+/*
   1) 최고
 
   미세먼지 : 0 - 15
@@ -93,4 +73,66 @@ samples, guidance on mobile development, and a full API reference.
   아황산가스(SO2) : 0.16~
 
    */
-```
+
+import 'package:flutter/material.dart';
+
+class StatusModel {
+  // 단계
+  final int level;
+
+  // 단계 이름
+  final String label;
+
+  // 주색상
+  final Color primaryColor;
+
+  // 어두운 색상
+  final Color darkColor;
+
+  // 밝은 색상
+  final Color lightColor;
+
+  // 폰트 색상
+  final Color fontColor;
+
+  // 이모티콘 이미지
+  final String imagePath;
+
+  // 코멘트
+  final String comment;
+
+  // 미세먼지 최소치
+  final double minPM10;
+
+  // 초미세먼지 최소치
+  final double minPM20;
+
+  // 오존 최소치
+  final double min03;
+
+  // 이산화질소 최소치
+  final double minN02;
+
+  // 일산화탄소 최소치
+  final double minCO;
+
+  // 이상환가스 최소치
+  final double minS02;
+
+  StatusModel({
+    required this.level,
+    required this.label,
+    required this.primaryColor,
+    required this.darkColor,
+    required this.lightColor,
+    required this.fontColor,
+    required this.imagePath,
+    required this.comment,
+    required this.minPM10,
+    required this.minPM20,
+    required this.min03,
+    required this.minN02,
+    required this.minCO,
+    required this.minS02,
+  })
+}
