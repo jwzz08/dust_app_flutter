@@ -1,7 +1,7 @@
 import 'package:dusty_dust/model/status_model.dart';
 import 'package:flutter/material.dart';
 
-const statusModel = [
+const statusLevels = [
   // 최고
   StatusModel(
       level: 0,
@@ -13,14 +13,14 @@ const statusModel = [
       imagePath: 'asset/img/best.png',
       comment: '우와! 100년에 한번 오는 날!',
       minPM10: 0,
-      minPM20: 0,
+      minPM25: 0,
       min03: 0,
       minN02: 0,
       minCO: 0,
       minS02: 0),
   // 좋음
   StatusModel(
-      level: 0,
+      level: 1,
       label: '좋음',
       primaryColor: Color(0xFF2196F3),
       darkColor: Color(0xFF0069C0),
@@ -29,14 +29,14 @@ const statusModel = [
       imagePath: 'asset/img/good.png',
       comment: '조아용 나가서 뛰어놀아야 하는 날',
       minPM10: 16,
-      minPM20: 9,
+      minPM25: 9,
       min03: 0.02,
       minN02: 0.02,
       minCO: 0.02,
       minS02: 0.01),
   // 양호
   StatusModel(
-    level: 0,
+    level: 2,
     label: '양호',
     primaryColor: Color(0xFF2196F3),
     darkColor: Color(0xFF0069C0),
@@ -45,7 +45,7 @@ const statusModel = [
     imagePath: 'asset/img/mediocre.png',
     comment: '이 정도면 좋다고 볼 수 있죠',
     minPM10: 31,
-    minPM20: 16,
+    minPM25: 16,
     min03: 0.03,
     minN02: 0.03,
     minCO: 2,
@@ -53,7 +53,7 @@ const statusModel = [
   ),
   // 보통
   StatusModel(
-      level: 0,
+      level: 3,
       label: '보통',
       primaryColor: Color(0xFF2196F3),
       darkColor: Color(0xFF0069C0),
@@ -62,14 +62,14 @@ const statusModel = [
       imagePath: 'asset/img/ok.png',
       comment: '나쁘진 않아요!',
       minPM10: 41,
-      minPM20: 21,
+      minPM25: 21,
       min03: 0.06,
       minN02: 0.05,
       minCO: 5.5,
       minS02: 0.04),
   // 나쁨
   StatusModel(
-      level: 0,
+      level: 4,
       label: '나쁨',
       primaryColor: Color(0xFF2196F3),
       darkColor: Color(0xFF0069C0),
@@ -78,14 +78,14 @@ const statusModel = [
       imagePath: 'asset/img/bad.png',
       comment: '바깥 활동을 삼가해야 하는 날이 오고 있어요',
       minPM10: 51,
-      minPM20: 26,
+      minPM25: 26,
       min03: 0.09,
       minN02: 0.06,
       minCO: 9,
       minS02: 0.05),
   // 상당히 나쁨
   StatusModel(
-      level: 0,
+      level: 5,
       label: '상당히나쁨',
       primaryColor: Color(0xFF2196F3),
       darkColor: Color(0xFF0069C0),
@@ -94,14 +94,14 @@ const statusModel = [
       imagePath: 'asset/img/very_bad.png',
       comment: '마스크 챙겨야 할 것 같네요~',
       minPM10: 76,
-      minPM20: 36,
+      minPM25: 36,
       min03: 0.12,
       minN02: 0.13,
       minCO: 12,
       minS02: 0.1),
   // 매우 나쁨
   StatusModel(
-      level: 0,
+      level: 6,
       label: '매우나쁨',
       primaryColor: Color(0xFF2196F3),
       darkColor: Color(0xFF0069C0),
@@ -110,14 +110,14 @@ const statusModel = [
       imagePath: 'asset/img/worse.png',
       comment: '매우 나쁘네요 산책 절대 금지',
       minPM10: 101,
-      minPM20: 51,
+      minPM25: 51,
       min03: 0.15,
       minN02: 0.2,
       minCO: 15,
       minS02: 0.15),
   // 최악
   StatusModel(
-      level: 0,
+      level: 7,
       label: '최악',
       primaryColor: Color(0xFF2196F3),
       darkColor: Color(0xFF0069C0),
@@ -126,7 +126,7 @@ const statusModel = [
       imagePath: 'asset/img/worst.png',
       comment: '이보다 더 최악일 수는 없다 마스크 세 겹 쓰셔야 할 듯!',
       minPM10: 151,
-      minPM20: 76,
+      minPM25: 76,
       min03: 0.38,
       minN02: 1.1,
       minCO: 32,

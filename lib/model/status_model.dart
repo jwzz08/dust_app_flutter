@@ -105,7 +105,7 @@ class StatusModel {
   final double minPM10;
 
   // 초미세먼지 최소치
-  final double minPM20;
+  final double minPM25;
 
   // 오존 최소치
   final double min03;
@@ -129,7 +129,7 @@ class StatusModel {
     required this.imagePath,
     required this.comment,
     required this.minPM10,
-    required this.minPM20,
+    required this.minPM25,
     required this.min03,
     required this.minN02,
     required this.minCO,

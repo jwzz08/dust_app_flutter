@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Region region = Region.seoul;
 
   @override
   void initState() {
@@ -40,8 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
           child: Column(
             children: [
-              MainStat(),
-              CategoryStat(),
+              MainStat(region: region),
+              CategoryStat(region: region),
               HoulyStat(),
             ],
           )
