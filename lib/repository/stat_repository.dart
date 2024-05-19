@@ -3,10 +3,31 @@ import 'package:dusty_dust/model/stat_model.dart';
 import 'package:get_it/get_it.dart';
 import 'package:isar/isar.dart';
 
-
 class StatRepository {
   static Future<void> fetchData() async {
-    for(ItemCode itemCode in ItemCode.values) {
+    final isar = GetIt.I<Isar>();
+
+    final now = DateTime.now();
+    final compareDateTimeTarget = DateTime(
+      now.year,
+      now.month,
+      now.day,
+      now.hour,
+    );
+
+    //api 요청을 아끼기 위함
+    //now 데이터와 기존 데이터를 비교해서 이미 있는 데이터면 다음 로직으로 넘어가지 않는다.
+    final count = await isar.statModels
+        .filter()
+        .dateTimeEqualTo(compareDateTimeTarget)
+        .count();
+
+    if(count > 0) {
+      print('데이터가 존재합니다 : count: $count');
+      return;
+    }
+
+    for (ItemCode itemCode in ItemCode.values) {
       await fetchDataByItemCode(itemCode: itemCode);
     }
   }
@@ -14,7 +35,6 @@ class StatRepository {
   static Future<List<StatModel>> fetchDataByItemCode({
     required ItemCode itemCode,
   }) async {
-
     final response = await Dio().get(
         'http://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureLIst',
         queryParameters: {
@@ -65,10 +85,7 @@ class StatRepository {
             .itemCodeEqualTo(itemCode)
             .count();
 
-
-        print(count);
-
-        if(count > 0){
+        if (count > 0) {
           continue;
         }
 
