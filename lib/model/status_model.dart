@@ -119,7 +119,7 @@ class StatusModel {
   // 이상환가스 최소치
   final double minS02;
 
-  StatusModel({
+  const StatusModel({
     required this.level,
     required this.label,
     required this.primaryColor,
@@ -134,5 +134,5 @@ class StatusModel {
     required this.minN02,
     required this.minCO,
     required this.minS02,
-  })
+  });
 }
