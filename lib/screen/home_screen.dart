@@ -18,6 +18,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Region region = Region.seoul;
+  bool isExpanded = true;
+  ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
@@ -25,7 +27,17 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     StatRepository.fetchData();
-    getCount();
+    
+    scrollController.addListener(() {
+      //kTollbarHeight : 기본 appbar height
+      bool isExpanded = scrollController.offset < (500 - kToolbarHeight);
+
+      if(isExpanded != this.isExpanded) {
+        setState(() {
+          this.isExpanded = isExpanded;
+        });
+      }
+    });
   }
 
   getCount() async {
@@ -58,14 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: statusModel.darkColor,
               child: ListView(children: [
                 DrawerHeader(
-                  margin: EdgeInsets.zero,
+                    margin: EdgeInsets.zero,
                     child: Text(
-                  '지역 선택',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20.0
-                  ),
-                )),
+                      '지역 선택',
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
+                    )),
                 ...Region.values
                     //ListTile 함수는 onTap 즉 클릭함수가 있음.
                     .map((e) => ListTile(
@@ -84,25 +93,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     .toList(),
               ]),
             ),
-            appBar: AppBar(
-              backgroundColor: statusModel.primaryColor,
-              surfaceTintColor: statusModel.primaryColor,
-            ),
             backgroundColor: statusModel.primaryColor,
-            body: SingleChildScrollView(
+            body: CustomScrollView(controller: scrollController, slivers: [
+              MainStat(
+                region: region,
+                primaryColor: statusModel.primaryColor,
+                isExpanded: isExpanded,
+              ),
+              SliverToBoxAdapter(
                 child: Column(
-              children: [
-                MainStat(region: region),
-                CategoryStat(
-                    region: region,
-                    darkColor: statusModel.darkColor,
-                    lightColor: statusModel.lightColor),
-                HoulyStat(
-                    region: region,
-                    lightColor: statusModel.lightColor,
-                    darkColor: statusModel.darkColor),
-              ],
-            )),
+                  children: [
+                    CategoryStat(
+                        region: region,
+                        darkColor: statusModel.darkColor,
+                        lightColor: statusModel.lightColor),
+                    HoulyStat(
+                        region: region,
+                        lightColor: statusModel.lightColor,
+                        darkColor: statusModel.darkColor),
+                  ],
+                ),
+              )
+            ]),
           );
         });
   }
