@@ -54,6 +54,40 @@ class _HomeScreenState extends State<HomeScreen> {
               StatusUtils.getStatusModelFromStat(statModel: statModel);
 
           return Scaffold(
+            drawer: Drawer(
+              backgroundColor: statusModel.darkColor,
+              child: ListView(children: [
+                DrawerHeader(
+                  margin: EdgeInsets.zero,
+                    child: Text(
+                  '지역 선택',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0
+                  ),
+                )),
+                ...Region.values
+                    //ListTile 함수는 onTap 즉 클릭함수가 있음.
+                    .map((e) => ListTile(
+                          selected: e == region,
+                          tileColor: Colors.white,
+                          selectedTileColor: statusModel.lightColor,
+                          selectedColor: Colors.black,
+                          onTap: () {
+                            setState(() {
+                              region = e;
+                            });
+                            Navigator.of(context).pop();
+                          },
+                          title: Text(e.krName),
+                        ))
+                    .toList(),
+              ]),
+            ),
+            appBar: AppBar(
+              backgroundColor: statusModel.primaryColor,
+              surfaceTintColor: statusModel.primaryColor,
+            ),
             backgroundColor: statusModel.primaryColor,
             body: SingleChildScrollView(
                 child: Column(
@@ -63,7 +97,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     region: region,
                     darkColor: statusModel.darkColor,
                     lightColor: statusModel.lightColor),
-                HoulyStat(region: region, lightColor: statusModel.lightColor, darkColor: statusModel.darkColor),
+                HoulyStat(
+                    region: region,
+                    lightColor: statusModel.lightColor,
+                    darkColor: statusModel.darkColor),
               ],
             )),
           );
